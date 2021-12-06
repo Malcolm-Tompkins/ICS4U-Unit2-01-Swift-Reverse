@@ -1,28 +1,30 @@
-/*Calculates the length of a board foot given a height and width.
-* @author  Malcolm Tompkins
-* @version 1.0
-* @since 2020-11-27
-*/
-
+//  ReverseString.swift
+//
+//  Created by Malcolm Tompkins
+//  Created on 2021-12-06
+//  Version 1.0
+//
+//  This program reverses a user-inputted string.
+//
 import Foundation
 
-input()
+// Reverses an inputted string via recursion
+func reverse(inputString: String) -> String {
 
-// Function for input
-func input() {
-    print("Input your string to be converted: ")
-    let userString = readLine()!
-    let reversedString: String = calculateLength(userString: String)
-    print("Your reversed string is: \(reversedString)")
-    print("Done.")
-}
-
-// Function for calculations
-func reverse(anyString: String) -> String {
-    var returnValue: String = nil
-    if anyString.count == 0 {
-        returnValue = anyString
+    if inputString.count == 0 {
+        return inputString
     } else {
-        returnValue = reverse(anyString.last!) + anyString.prefix(1)
+        let range = inputString
+            .index(after: inputString.startIndex)..<inputString.endIndex
+        return reverse(inputString: String(inputString[range]))
+            + inputString.prefix(1)
     }
 }
+
+// Captures user input, feeds it to reverse() and outputs the reversed string
+print("Enter a string: ", terminator: "")
+let inputString = readLine()
+let reversedString = reverse(inputString: inputString!)
+print(reversedString)
+
+print("\nDone.")
